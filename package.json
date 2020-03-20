@@ -1,0 +1,33 @@
+{
+  "name": "rei_body",
+  "version": "1.0.0",
+  "description": "bodycomponent",
+  "author": "Brandon",
+  "license": "",
+  "engines": {
+    "node": ">=6.13.0"
+  },
+  "scripts": {
+    "start": "nodemon server/index.js",
+    "dev:react": "webpack -d --watch"
+  },
+  "dependencies": {
+    "@rei/cedar": "^4.0.3",
+    "axios": "0.19.2",
+    "body-parser": "1.19.0",
+    "cors": "2.8.5",
+    "express": "4.17.1",
+    "mongoose": "5.9.4",
+    "morgan": "1.9.1",
+    "path": "0.12.7",
+    "react": "16.13.0",
+    "react-dom": "16.13.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.23.1",
+    "babel-loader": "^6.3.2",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.23.0",
+    "webpack": "^2.2.1"
+  }
+}

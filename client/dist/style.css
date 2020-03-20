@@ -1,0 +1,392 @@
+/* this is meant to create similar spacing as the site */
+#nav-bar{
+ background-color: #000;
+ height: 184px;
+}
+
+#page-content{
+  padding: 0px 0px 30px 30px;
+  max-width:1200px;
+  height:800px;
+  margin-right: auto;
+  margin-left: auto;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+
+/* set basic body styles */
+body {
+  line-height: 1.5;
+  color: #292929;
+  background-color: #fff;
+  font-style: normal;
+  font-weight: 400;
+  font: normal normal 1.4rem Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  letter-spacing: normal;
+  font-variant: normal;
+    font-variant-ligatures: normal;
+    font-variant-caps: normal;
+    font-variant-numeric: normal;
+    font-variant-east-asian: normal;
+    margin: 0px;
+}
+/* //////  BELOW ->   Header Section with Breadcrumb Navigation Link     //////*/
+
+
+.product-header-elements-wrapper {
+  max-width: 1200px;
+  font-size: 16px;
+  padding-top:20px
+
+}
+
+/* Style the list for top breadcrum link */
+ul.breadcrumb {
+  margin-bottom: 15px;
+  padding-inline-start:0px;
+  margin-top:0;
+  list-style: none;
+  font-size: 14px;
+  font-weight: 400;
+
+}
+
+/* Display list items side by side for top breadcrum link */
+ul.breadcrumb li {
+  display: inline-block;
+  padding-right: 5px;
+}
+
+
+/* Add an arrow symbol (>) before/behind each list item for top breadcrum link */
+ul.breadcrumb li:not(:last-of-type):after {
+  font: normal normal 1.4rem Roboto,"Helvetica Neue",Helvetica,Arial,sans-serif;
+  background: url(//satchel.rei.com/media/img/ico/icon-rei-right-arrow.svg) no-repeat;
+  vertical-align: text-bottom;
+  content: "";
+  display: inline-block;
+  fill: #222;
+  height: .8rem;
+  width: .6rem;
+  margin-left: .4rem;
+
+}
+
+
+/* Add a color to all links inside the list for top breadcrum link */
+ul.breadcrumb li a {
+  color: #3278ae;
+  text-decoration: none;
+}
+
+/* Add a color on mouse-over for top breadcrum link */
+ul.breadcrumb li a:hover {
+  color: #01447e;
+  text-decoration: underline;
+}
+
+/*    //////// BELOW ->css for div surround media/photos //////////  */
+.apparel-media-wrapper {
+  padding: 0px 30px;
+  font-size: 16px;
+  margin: 0px -30px;
+
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-right: auto;
+  margin-left: auto;
+  justify-content: center;
+
+}
+/* //// IMG & DOT CAROUSEL /////*/
+
+/* directly modify image wrapper */
+.mediaWrapper {
+  padding: 8px;
+  display: flex;
+  max-width: 75%;
+  margin-right: auto;
+  margin-left: auto;
+
+}
+.imageCarousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
+/* /////// DOT Carousel ////// */
+.dot-carousel {
+  display: flex;
+  flex-direction:row;
+  margin:1.5rem auto;
+}
+.dot-thumb {
+  width:.5rem;
+  height:.5rem;
+  border: 1px solid #555;
+  border-radius: .7rem;
+  cursor: pointer;
+}
+.dot-carousel .dot-thumb+.dot-thumb {
+  margin-left: .6rem;
+}
+
+.dot-carousel .dot-thumb.selected {
+  background-color: #555;
+}
+
+/* image count */
+.image-info-wrapper {
+  display: flex;
+}
+
+
+
+/* directly modify title wrapper */
+.titleWrapper {
+  display:block;
+  min-width: 100%;
+  float: left;
+}
+
+
+/* directly modify info wrapper */
+
+.infoWrapper {
+  display:flex;
+  min-height: 100px;
+  padding: 0px 30px;
+  margin-top: 8px;
+  min-width: 25%;
+  /* vertical-align: middle; */
+  /* align-items: center; */
+}
+
+/* At the specified point stack the wrappers */
+
+@media (max-width: 991px) {
+   .mediaWrapper{
+    flex: 100%;
+    min-width: 100%;
+    justify-content: center;
+  }
+  .infoWrapper{
+    min-width: 100%;
+  }
+}
+
+/* at specified point resize img element */
+@media(max-width: 767px) {
+  .mediaWrapper img {
+    height: 344px;
+    width: 258px;
+    object-fit:scale-down;
+  }
+}
+
+/* product-brand title styling */
+#product-brand {
+  font-weight: 700;
+  line-height: 1.6;
+  color: #347CB1;
+}
+
+/* product- information styling  above stars */
+
+#product-information {
+  margin-bottom: 1rem;
+  font-family: Stuart,Georgia,serif;
+  font-weight: 500!important;
+  text-transform: none!important;
+  font-stretch: normal!important;
+  color: #2e2e2e;
+    font-size: 20px;
+    line-height: 1.4!important;
+    margin-top: 0;
+}
+
+h1 {
+  font-size: 2em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  display: flex;
+
+}
+
+/* ////// styling for stars review and item ////// */
+
+
+.starsItem {
+  cursor: pointer;
+  height: 30px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#starSide {
+  display:flex;
+  flex-direction: row;
+
+}
+.ratingBackground {
+  display:flex;
+  position:absolute;
+}
+.ratings {
+  display: flex;
+ }
+ .numbers{
+  display: flex;
+  font-size:16px;
+ }
+ #rating{
+   border-right: 1px solid #b8b8b8;
+   line-height: 1.5;
+   padding-right: 3px;
+   padding-left: 10px;
+ }
+ #numberReviews{
+   padding-left: 3px;
+   line-height: 1.5;
+ }
+
+.ratingPlaceholder {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232b6692'%3E %3Ctitle%3E star-empty %3C/title%3E %3Cpath d='M5.69 22.067l1.669-7.552-5.535-5.048 7.298-.66L12 1.662l2.878 7.147 7.298.659-5.535 5.048 1.669 7.552L12 18.061l-6.31 4.006zm1.496-2.134L12 16.877l4.814 3.056-1.274-5.767 4.284-3.907-5.645-.51L12 4.339l-2.179 5.41-5.645.51 4.284 3.907-1.274 5.767z'/%3E %3C/svg%3E");
+  background-repeat: no-repeat;
+  color: #347cb1;
+  font-size: 16px;
+  height: 24px;
+  width: 24px;
+}
+.ratingIcon {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232b6692'%3E %3Ctitle%3E star-100-percent %3C/title%3E %3Cpath d='M5.686 22.066l1.668-7.552L1.82 9.465l7.298-.659 2.877-7.146 2.877 7.146 7.298.659-5.534 5.049 1.668 7.552-6.309-4.006z'/%3E %3C/svg%3E");
+  background-repeat: no-repeat;
+  color: #347cb1;
+  font-size: 16px;
+  height: 24px;
+  width: 24px;
+}
+
+#itemNumber {
+  /* display: flex;
+  justify-content: right; */
+  line-height: 1.5;
+  float:right;
+}
+
+
+
+
+
+
+/* //////////////////////////////////////////// */
+/* /////////// FULL SCREEN STYLING //////////// */
+
+/* product-brand title styling */
+#product-brand-full-screen {
+  font-weight: 700;
+  line-height: 1.6;
+  color: #347CB1;
+}
+
+/* product- information styling  above stars */
+
+#product-information-full-screen {
+  margin-bottom: 1rem;
+  font-family: Stuart,Georgia,serif;
+  font-weight: 500!important;
+  text-transform: none!important;
+  font-stretch: normal!important;
+  color: #2e2e2e;
+    font-size: 20px;
+    line-height: 1.4!important;
+    margin-top: 0;
+}
+
+/* ////// styling for stars review and item ////// */
+
+
+.starsItem-full-screen {
+  cursor: pointer;
+  height: 30px;
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#starSide-full-screen {
+  display:flex;
+  flex-direction: row;
+
+}
+.ratingBackground-full-screen {
+  display:flex;
+  position:absolute;
+}
+.ratings-full-screen {
+  display: flex;
+ }
+ .numbers-full-screen {
+  display: flex;
+  font-size:16px;
+ }
+ #rating-full-screen {
+   border-right: 1px solid #b8b8b8;
+   line-height: 1.5;
+   padding-right: 3px;
+   padding-left: 10px;
+ }
+ #numberReviews-full-screen {
+   padding-left: 3px;
+   line-height: 1.5;
+ }
+
+.ratingPlaceholder-full-screen {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232b6692'%3E %3Ctitle%3E star-empty %3C/title%3E %3Cpath d='M5.69 22.067l1.669-7.552-5.535-5.048 7.298-.66L12 1.662l2.878 7.147 7.298.659-5.535 5.048 1.669 7.552L12 18.061l-6.31 4.006zm1.496-2.134L12 16.877l4.814 3.056-1.274-5.767 4.284-3.907-5.645-.51L12 4.339l-2.179 5.41-5.645.51 4.284 3.907-1.274 5.767z'/%3E %3C/svg%3E");
+  background-repeat: no-repeat;
+  color: #347cb1;
+  font-size: 16px;
+  height: 24px;
+  width: 24px;
+}
+.ratingIcon-full-screen {
+  background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232b6692'%3E %3Ctitle%3E star-100-percent %3C/title%3E %3Cpath d='M5.686 22.066l1.668-7.552L1.82 9.465l7.298-.659 2.877-7.146 2.877 7.146 7.298.659-5.534 5.049 1.668 7.552-6.309-4.006z'/%3E %3C/svg%3E");
+  background-repeat: no-repeat;
+  color: #347cb1;
+  font-size: 16px;
+  height: 24px;
+  width: 24px;
+}
+
+
+
+
+#itemNumber-full-screen {
+  line-height: 1.5;
+  float:right;
+
+}
+
+.column-infoWrapper-full-screen {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Product Price Label */
+.product-price-wrapper {
+  font-family: Stuart,Georgia,serif!important;
+  text-transform: none!important;
+  font-stretch: normal!important;
+  text-align: left;
+  font-weight: 600!important;
+  font-size: 20px;
+}
+
+

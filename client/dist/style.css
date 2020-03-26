@@ -107,6 +107,7 @@ ul.breadcrumb li a:hover {
 .mediaWrapper {
   padding: 8px;
   display: flex;
+  flex-direction: column;
   max-width: 75%;
   margin-right: auto;
   margin-left: auto;
@@ -116,7 +117,6 @@ ul.breadcrumb li a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
-
 }
 
 /* /////// DOT Carousel ////// */
@@ -124,7 +124,9 @@ ul.breadcrumb li a:hover {
   display: flex;
   flex-direction:row;
   margin:1.5rem auto;
+  
 }
+
 .dot-thumb {
   width:.5rem;
   height:.5rem;
@@ -143,9 +145,40 @@ ul.breadcrumb li a:hover {
 /* image count */
 .image-info-wrapper {
   display: flex;
+  font-size: 14px;
 }
 
+/* ////// IMAGE Carousel ////// */
 
+.image-carousel {
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin:1.5rem auto;
+  overflow: hidden;  
+}
+.image-thumb {
+  display:flex;
+  justify-content: center;
+  cursor: pointer; 
+  width: 7rem;
+  height: 5rem;
+  border: 1px solid #ccc;
+  border-radius: .5rem;
+  padding: .2rem;
+}
+
+.image-thumb img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.image-thumb.selected {
+  border-color: #4eaaff;
+}
 
 /* directly modify title wrapper */
 .titleWrapper {
@@ -159,16 +192,371 @@ ul.breadcrumb li a:hover {
 
 .infoWrapper {
   display:flex;
+  flex-direction: column;
   min-height: 100px;
   padding: 0px 30px;
   margin-top: 8px;
   min-width: 25%;
-  /* vertical-align: middle; */
-  /* align-items: center; */
 }
 
-/* At the specified point stack the wrappers */
+/* size button and Quantity Wrapper */
 
+.buy-grid {
+  display: flex;
+  flex-direction: column;
+  margin-top: 28px;
+  margin-bottom: 24px;
+}
+label {
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 4px;
+  font-family: 'Roboto Condensed','Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.size-selection {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 35px;
+  padding-inline-start: 0px;
+}
+.size-selection li {
+  list-style-type: none;
+
+}
+
+.size-selection li .size-title {
+  background: 0 0;
+  background-image: initial;
+  background-position-x: 0px;
+  background-position-y: 0px;
+  background-size: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: initial;
+  width: 100%;
+  float: left;
+  margin-right: 30px;
+  width: 250px;
+  line-height: 35px;
+  white-space: nowrap;
+  text-decoration: none;
+  border-radius: 3px;
+}
+
+/* Quantity Wrapper */
+
+.quantity-button-wrapper {
+  display: flex;
+  align-items: center;
+}
+/* places the minus sign into the circle */
+.icon-collapse:before {
+  content: "\2212";
+  color: inherit;
+  font-size: 16px;
+  font-weight: 600;
+}
+/* places the plus sign into the circle */
+.icon-expand:before {
+  content: "\002B";
+  color: inherit;
+  font-size: 16px;
+  font-weight: 600;
+}
+.icon {
+  font: normal normal normal 1.5rem/1 rei-icons;
+  text-rendering: auto;
+  vertical-align: middle;
+}
+.icon-collapse:before {
+  content: "\2212";
+  color: inherit;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}
+.quantity-btn {
+  border: 1px solid #c5c5c5;
+  border-radius: 50%;
+  font-size:.7rem;
+  width: 25px;
+  height: 25px;
+}
+
+.quantity-button-wrapper input {
+  height: 28px;
+  width: 38px;
+  padding: 5px;
+  margin: 5px;
+  font-size: 16px;
+  text-align: center;
+  border-radius: 3px;
+  text-decoration: none;
+  list-style-type: none;
+
+  color:#2e2e2e;
+  display:block;
+  line-height: 1;
+  
+}
+
+/***** Restriction Alert Warning *****/
+
+.restriction-alert-warning {
+    display:flex;
+    align-items: center;
+    background: #fff9db;
+    border: .1rem solid #e4ac00;
+    font-size: 1rem;
+    width: 100%;
+    height: 39px;
+    margin-top: 1.5rem;
+}
+
+.restriction-info-icon {
+  font-size: 1rem;
+    background: 0 0;
+    background-image: initial;
+    background-position-x: 0px;
+    background-position-y: 0px;
+    background-size: initial;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+    border: 0;
+    padding: 0;
+}
+
+
+.icon-warning:before {
+  content: "\26A0";
+  fill: #e4ac00;
+  color: #e4ac00;
+}
+#showRestrictionMessage i {
+  font-size: 18px;
+}
+
+/* Line Break <hr> */
+
+.radio{
+  margin: 0 0 1.2rem 2.3rem;
+}
+
+hr {
+  margin-top: 24px;
+  margin-bottom: 24px;
+  border-top: 1px solid #e5e5e5;
+  box-sizing: content-box;
+  height: 0;
+}
+
+
+/* product shipping options*/
+.product-shipping-options-container {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+}
+.h6 {
+  font-weight: 600!important;
+  font-size: 16px;
+}
+.radio>[type=radio] {
+  border: none;
+  clip: rect(0 0 0 0);
+  height: .1rem;
+  margin: -.1rem;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: .1rem;
+}
+
+.radio>[type=radio]+label {
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  position: relative;
+  cursor: pointer;
+}
+
+.radio>[type=radio]+label:before {
+  content: '';
+  border: .2rem solid #fff;
+  display: inline-block;
+  height: .5rem;
+  width: .5rem;
+  left: -1.8rem;
+  margin-right: 1.6rem;
+  position: absolute;
+  top: .2rem;
+  border-radius: 1.6rem;
+  box-shadow: 0 0 0 0.125rem #222;
+  vertical-align: -.2rem;
+}
+
+.radio>[type=radio][disabled]+label {
+  color: #ccc;
+  cursor: not-allowed;
+}
+.shipping-no-in-store {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #222;
+}
+
+.radio>[type=radio]:checked+label:before {
+  background: #222;
+  outline: 0;
+}
+
+/* //////// BUTTON CAROUSEL ////////// */
+.product-shipping-options-container form {
+  width: 100%;
+}
+.primary-button {
+  display:flex;
+  align-items: center;
+  width:100%;
+}
+.product-buy-button {
+  width:100%;
+  margin:0;
+  color: #fff;
+  background-color: #426c90;
+  border-color: #426c90;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  outline: 0;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 16px;
+  padding: 16px 32px;
+  border: 1px solid transparent;
+  cursor: pointer;
+}
+
+.buybox-buttons {
+  display:flex;
+  align-items:center;
+  margin-top:1rem;
+  /* flex-direction: row;*/
+  justify-content: space-between;
+  
+}
+.wishlist-button {
+  width: 48.5%;
+  border-color: #c5c5c5;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  outline: 0;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 16px;
+  padding: 16px 32px;
+  cursor: pointer;
+}
+.registry-button {
+  width: 48.5%;
+  border-color: #c5c5c5;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 2px;
+  outline: 0;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 16px;
+  padding: 16px 32px;
+  cursor: pointer;
+}
+
+/* ///// return policy ///// */
+.message-wrapper {
+  margin: 24px 0px;
+}
+.return-popover-wrapper {
+  display: block;
+  text-align: center;
+}
+
+.return-popover {
+  color: #3278ae;
+  display: inline-block;
+    width: auto;
+    padding: 2rem 1rem;
+    cursor: pointer;
+}
+
+/* //// shipping //// */
+
+.product-shipping-message-button {
+  padding: 0;
+  border: none;
+  background: none;
+  color: #3278ae;
+  line-height: 1.5;
+  text-align: left;
+  white-space: normal;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+
+/* //// dividend message //// */
+.dividend-message {
+  margin-top:20px;
+}
+
+.dividend-message a {
+  color: #3278ae;
+  text-decoration: underline;
+  outline: 0;
+}
+
+/* at the specified point wrap dividend message */
+
+@media (min-width: 991px) {
+  .dividend-message a {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .column-infoWrapper-full-screen {
+    height: 869px;
+    width: 310px;
+    padding-top: 8px;
+  }
+  .size-selection li .size-title{
+    width: 75px;
+ 
+  }
+  .size-selection{
+    display: flex;
+    flex-direction: row;
+  }
+  .buybox-buttons button {
+    white-space: nowrap;
+  }
+
+}
+
+
+/* At the specified point stack the wrappers */
 @media (max-width: 991px) {
    .mediaWrapper{
     flex: 100%;
@@ -374,10 +762,17 @@ h1 {
 
 }
 
-.column-infoWrapper-full-screen {
+/* .column-infoWrapper-full-screen {
   display: flex;
   flex-direction: column;
-}
+} */
+
+
+/* /////////////////////////////////////// */
+/* //////// product-info-wrapper ///////// */
+
+
+
 
 /* Product Price Label */
 .product-price-wrapper {
@@ -386,7 +781,7 @@ h1 {
   font-stretch: normal!important;
   text-align: left;
   font-weight: 600!important;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 

@@ -7,7 +7,7 @@ mongoose.connect('mongodb://localhost/reibody', {
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
-  console.log('Mongoose-d!');
+  console.log('Connection to the Mongoose database successful!');
 });
 
 module.exports = db;

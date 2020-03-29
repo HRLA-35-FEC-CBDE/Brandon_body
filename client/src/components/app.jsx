@@ -9,39 +9,44 @@ class App extends React.Component {
     super(props)
     this.state = {
       product: {
-        category:'',
-        subCategory:'',
-        categoryType:'',
-        comany:'',
-        title:'',
-        itemNumber:''
+        category: '',
+        subCategory: '',
+        categoryType: '',
+        comany: '',
+        title: '',
+        itemNumber: ''
       },
       decrementDisabled: true,
       width: window.innerWidth,
       quantity: 0,
       thumbArray: [],
       selectedIdx: 0,
+      onHover: false,
+      quantity: 0,
     }
     this.updateDimensions = this.updateDimensions.bind(this);
     this.updateImage = this.updateImage.bind(this);
     this.increaseQuantity = this.increaseQuantity.bind(this);
     this.decreaseQuantity = this.decreaseQuantity.bind(this);
+    this.imageZoom = this.imageZoom.bind(this);
+    this.onImageHover = this.onImageHover.bind(this)
+    this.removeZoom = this.removeZoom.bind(this)
   }
   getData() {
-    for(var i=0; i<4; i++){
-      var imageId = Math.floor(Math.random()*(20-1)*1);
+    for (var i = 0; i < 4; i++) {
+      var imageId = Math.floor(Math.random() * (20 - 1) * 1);
       this.state.thumbArray.push(images[imageId])
     }
-    var id = Math.floor(Math.random()*(100-1)*1);
+    var id = Math.floor(Math.random() * (100 - 1) * 1);
     axios.get(`/item/${id}`)
-    .then(result=>{
-      this.setState({
-        product: result.data[0]
-      });
-    })
-    .catch(err=>{
-      console.log('error')
-    })
+      .then(result => {
+        this.setState({
+          product: result.data[0]
+        });
+      })
+      .catch(err => {
+        console.log('error')
+      })
   }
 
   updateDimensions() {
@@ -74,17 +79,90 @@ class App extends React.Component {
   componentDidMount() {
     window.addEventListener('resize', this.updateDimensions);
     this.getData();
+    // Initiate zoom effect:
+    
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateDimensions);
   }
+  onImageHover() {
+      this.imageZoom("myimage", "myresult");
+  }
+
+  imageZoom(imgID, resultID) {
+    // <div id="myresult" className="img-zoom-result"></div>
+    var img, lens, result, cx, cy;
+    img = document.getElementById(imgID);
+    result = document.getElementById(resultID);
+    /*create lens:*/
+    lens = document.createElement("DIV");
+    lens.setAttribute("class", "img-zoom-lens");
+    /*insert lens:*/
+    img.parentElement.insertBefore(lens, img);
+    /*calculate the ratio between result DIV and lens:*/
+    cx = result.offsetWidth / lens.offsetWidth;
+    cy = result.offsetHeight / lens.offsetHeight;
+    /*set background properties for the result DIV:*/
+    result.style.backgroundImage = "url('" + img.src + "')";
+    result.style.backgroundSize = (img.width * cx) + "px " + (img.height * cy) + "px";
+    /*execute a function when someone moves the cursor over the image, or the lens:*/
+    lens.addEventListener("mousemove", moveLens);
+    img.addEventListener("mousemove", moveLens);
+    /*and also for touch screens:*/
+    lens.addEventListener("touchmove", moveLens);
+    img.addEventListener("touchmove", moveLens);
+    function moveLens(e) {
+      var pos, x, y;
+      /*prevent any other actions that may occur when moving over the image:*/
+      e.preventDefault();
+      /*get the cursor's x and y positions:*/
+      pos = getCursorPos(e);
+      /*calculate the position of the lens:*/
+      x = pos.x - (lens.offsetWidth / 2);
+      y = pos.y - (lens.offsetHeight / 2);
+      /*prevent the lens from being positioned outside the image:*/
+      if (x > img.width - lens.offsetWidth) { x = img.width - lens.offsetWidth; }
+      if (x < 0) { x = 0; }
+      if (y > img.height - lens.offsetHeight) { y = img.height - lens.offsetHeight; }
+      if (y < 0) { y = 0; }
+      /*set the position of the lens:*/
+      lens.style.left = x + "px";
+      lens.style.top = y + "px";
+      /*display what the lens "sees":*/
+      result.style.backgroundPosition = "-" + (x * cx) + "px -" + (y * cy) + "px";
+    }
+    function getCursorPos(e) {
+      var a, x = 0, y = 0;
+      e = e || window.event;
+      /*get the x and y positions of the image:*/
+      a = img.getBoundingClientRect();
+      /*calculate the cursor's x and y coordinates, relative to the image:*/
+      x = e.pageX - a.left;
+      y = e.pageY - a.top;
+      /*consider any page scrolling:*/
+      x = x - window.pageXOffset;
+      y = y - window.pageYOffset;
+      return { x: x, y: y };
+    }
+  }
+  removeZoom() {
+    var list = document.getElementsByClassName("img-zoom-lens");
+    for(var i = list.length - 1; 0 <= i; i--)
+    if(list[i] && list[i].parentElement)
+    list[i].parentElement.removeChild(list[i]);
+
+    var result = document.getElementById('myresult');
+    result.style.backgroundImage = '';
+    result.style.backgroundSize = "";
+    
+  }
+
 
   render() {
     const { decrementDisabled, width, product } = this.state;
     if (width >= 992) {
       return (
         <div>
-          <div id="nav-bar"></div>
           <div id="page-content">
             <div className="flex-container product-header-elements-wrapper">
               <nav data-is="breadcrumbs" aria-label="Breadcrumb">
@@ -98,12 +176,20 @@ class App extends React.Component {
             <div className="flex-container apparel-media-wrapper">
               <div className="row">
                 <div className="cloumn mediaWrapper">
-                  <img src={this.state.thumbArray[this.state.selectedIdx]}></img>
+                  <div className="img-zoom">
+                    <div className="img-zoom-container" onMouseEnter={this.onImageHover} onMouseLeave={this.removeZoom}>
+                      <img id="myimage" src={this.state.thumbArray[this.state.selectedIdx]}></img>
+                    </div>
+                  </div>
+                  {/* <div >
+                      <img id="main-img" src={this.state.thumbArray[this.state.selectedIdx]}></img>
+                    </div> */}
                   <div>
                     <ThumbImage updateImage={this.updateImage} images={this.state.thumbArray} selectedIdx={this.state.selectedIdx} />
                   </div>
                 </div>
                 <div className="column-infoWrapper-full-screen">
+                    <div id="myresult" className="img-zoom-result"></div>
                   <div id="product-brand">{product.company}</div>
                   <div>
                     <h1 id="product-information-full-screen">{product.title}</h1>
@@ -163,7 +249,7 @@ class App extends React.Component {
                     <button className="quantity-btn icon icon-collapse" onClick={this.decreaseQuantity} disabled={decrementDisabled}>
                       <span className="sr-only">Decrement quantity</span>
                     </button>
-                    <input value={this.state.quantity}></input>
+                    <input value={this.state.quantity} onChange={() => {}}></input>
                     <button className="quantity-btn icon icon-expand" onClick={this.increaseQuantity}>
                       <span className="sr-only">Increment quantity</span>
                     </button>
@@ -186,11 +272,11 @@ class App extends React.Component {
                     <section className="product-shipping-options-container">
                       <form>
                         <div className="radio">
-                          <input type="radio" checked="checked" ></input>
+                          <input type="radio" checked="checked" onChange={() => { }} ></input>
                           <label className="h6">{"Ship to address"}</label>
                         </div>
                         <div className="radio pick-up-radio">
-                          <input type="radio" disabled="disabled"></input>
+                          <input type="radio" disabled="disabled" onChage={() => { }}></input>
                           <label className="h6">
                             <div>Pick up in store - Free</div>
                             <div className="shipping-no-in-store">This item is not available for in-store pickup</div>
@@ -210,7 +296,7 @@ class App extends React.Component {
                     </section>
                   </div>
                   <div className="return-popover-wrapper">
-                    <a class="return-popover">REI return policy</a>
+                    <a className="return-popover">REI return policy</a>
                   </div>
                 </div>
               </div>
@@ -224,7 +310,6 @@ class App extends React.Component {
     if (width <= 991) {
       return (
         <div>
-          <div id="nav-bar"></div>
           <div id="page-content">
             <div className="flex-container product-header-elements-wrapper">
               <nav data-is="breadcrumbs" aria-label="Breadcrumb">
@@ -268,7 +353,7 @@ class App extends React.Component {
                   </div>
                 </div>
                 <div className="mediaWrapper">
-                  <div class="imageCarousel">
+                  <div className="imageCarousel">
                     <div>
                       <div className="zoom-cursor" ></div>
                       <img src={this.state.thumbArray[this.state.selectedIdx]}></img>
@@ -307,7 +392,7 @@ class App extends React.Component {
                         <button className="quantity-btn icon icon-collapse" onClick={this.decreaseQuantity} disabled={decrementDisabled}>
                           <span className="sr-only">Decrement quantity</span>
                         </button>
-                        <input value={this.state.quantity}></input>
+                        <input value={this.state.quantity} onChange={() => {}} ></input>
                         <button className="quantity-btn icon icon-expand" onClick={this.increaseQuantity}>
                           <span className="sr-only">Increment quantity</span>
                         </button>
@@ -330,11 +415,11 @@ class App extends React.Component {
                         <section className="product-shipping-options-container">
                           <form>
                             <div className="radio">
-                              <input type="radio" checked="checked" ></input>
+                              <input type="radio" checked="checked" onChage={() => {var x; }} ></input>
                               <label className="h6">{"Ship to address"}</label>
                             </div>
                             <div className="radio pick-up-radio">
-                              <input type="radio" disabled="disabled"></input>
+                              <input type="radio" disabled="disabled" onChage={() => { }}></input>
                               <label className="h6">
                                 <div>Pick up in store - Free</div>
                                 <div className="shipping-no-in-store">This item is not available for in-store pickup</div>
@@ -359,7 +444,7 @@ class App extends React.Component {
                       <div className="message-wrapper">
                         <div className="product-shipping-message">
                           <button className="product-shipping-message-button">
-                            <span className="icon-shipping"><i class="fas fa-truck"></i></span>
+                            <span className="icon-shipping"><i className="fas fa-truck"></i></span>
                             {"This item ships for FREE!"}
                           </button>
                         </div>

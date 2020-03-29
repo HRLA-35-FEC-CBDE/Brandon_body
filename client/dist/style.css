@@ -1,8 +1,3 @@
-/* this is meant to create similar spacing as the site */
-#nav-bar{
- background-color: #000;
- height: 184px;
-}
 
 #page-content{
   padding: 0px 0px 30px 30px;
@@ -16,6 +11,9 @@
 
 /* set basic body styles */
 body {
+    margin: 0px;
+}
+#app {
   line-height: 1.5;
   color: #292929;
   background-color: #fff;
@@ -28,7 +26,6 @@ body {
     font-variant-caps: normal;
     font-variant-numeric: normal;
     font-variant-east-asian: normal;
-    margin: 0px;
 }
 /* //////  BELOW ->   Header Section with Breadcrumb Navigation Link     //////*/
 
@@ -99,20 +96,58 @@ ul.breadcrumb li a:hover {
   margin-right: auto;
   margin-left: auto;
   justify-content: center;
+  overflow: visible;
 
 }
 /* //// IMG & DOT CAROUSEL /////*/
 
 /* directly modify image wrapper */
 .mediaWrapper {
+  position: relative;
   padding: 8px;
   display: flex;
   flex-direction: column;
   max-width: 75%;
   margin-right: auto;
   margin-left: auto;
-
+  /* object-fit:scale-down; */
 }
+* {box-sizing: border-box;}
+
+.img-zoom-container {
+  /* position: relative; */
+  display:flex;
+  flex-direction: row;
+} 
+
+.img-zoom-lens {
+  position: absolute;
+  border: 1px solid #d4d4d4;
+  /*set the size of the lens:*/
+  width: 81.4743px;
+  height: 117.604px;
+  object-fit:scale-down;
+}
+
+.img-zoom-result {
+  position: absolute;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  /* border: 1px solid #d4d4d4; */
+  height: 490px;
+  width:330px;
+  object-fit:scale-down;
+  overflow: hidden;
+  z-index:100;
+}
+.img-zoom {
+  display: flex;
+  flex-direction: row;
+}
+
+
 .imageCarousel {
   display: flex;
   flex-direction: column;
@@ -128,8 +163,8 @@ ul.breadcrumb li a:hover {
 }
 
 .dot-thumb {
-  width:.5rem;
-  height:.5rem;
+  width:.7rem;
+  height:.7rem;
   border: 1px solid #555;
   border-radius: .7rem;
   cursor: pointer;

@@ -6,7 +6,7 @@ const ThumbImage = (props) => (
     {props.images.map((item, idx) => {
       const className = idx === props.selectedIdx ? selected : unselected;
       return (
-        <div className={className} onClick={()=> {props.updateImage(item, idx);}}>
+        <div className={className} key={idx} onClick={()=> {props.updateImage(item, idx);}}>
           <img src={item}></img>
         </div>
       );

@@ -1,14 +1,6 @@
 const db = require('./index.js');
 const Product = require('./product.js');
 const faker=require('faker');
-
-// var category=faker.commerce.productAdjective();
-// var subCategory=faker.commerce.productMaterial();
-// var categoryType=faker.commerce.product();
-// var company=faker.company.companyName();
-// var title=faker.commerce.productName();
-// var price=faker.commerce.productName();
-// var itemNumber=faker.address.zipCode();
 var id;
 var category;
 var subCategory;
@@ -18,18 +10,6 @@ var title;
 var price;
 var itemNumber;
 
-
-// const sampleProducts = [
-//   {
-//     category: category,
-//     subCategory: subCategory,
-//     categoryType: categoryType,
-//     company: company,
-//     title: title,
-//     price: price,
-//     itemNumber: itemNumber,
-//   }
-// ];
 var data =  (()=>{
   category= faker.commerce.productAdjective();
   subCategory= faker.commerce.productMaterial();
@@ -57,9 +37,9 @@ const insertSampleBlogs = async function () {
         itemNumber: itemNumber,
       }
     ])
-   .then(()=> {db.disconnect();})
+   .then(()=> {db.connection.close();})
+   .catch((err) => console.log(err))
   }
 };
-
 
 insertSampleBlogs();

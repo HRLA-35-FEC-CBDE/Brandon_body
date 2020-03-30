@@ -603,6 +603,9 @@ hr {
   .infoWrapper{
     min-width: 100%;
   }
+  .mediaWrapper div {
+    display: flex;
+  }
 }
 
 /* at specified point resize img element */

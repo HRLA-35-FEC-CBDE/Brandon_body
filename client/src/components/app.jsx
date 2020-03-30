@@ -159,8 +159,11 @@ class App extends React.Component {
     var result = document.getElementById('myresult');
     result.style.backgroundImage = '';
     result.style.backgroundSize = '';
-    result.style.display = 'none';
-
+    result.style.display = 'flex';
+    
+    var imgStyle = document.getElementsByClassName('imageCarousel')
+    imgStyle.style.display = 'flex';
+    imgStyle.style.backgroundPosition = 0;
     this.setState({
       onHover: false,
     });
@@ -364,7 +367,6 @@ class App extends React.Component {
                 <div className="mediaWrapper">
                   <div className="imageCarousel">
                     <div>
-                      <div className="zoom-cursor" ></div>
                       <img src={this.state.thumbArray[this.state.selectedIdx]}></img>
                     </div>
                     <Thumb updateImage={this.updateImage} images={this.state.thumbArray} selectedIdx={this.state.selectedIdx} />

@@ -159,7 +159,7 @@ class App extends React.Component {
     var result = document.getElementById('myresult');
     result.style.backgroundImage = '';
     result.style.backgroundSize = '';
-    result.style.display = 'flex';
+    result.style.display = 'none';
     this.setState({
       onHover: false,
     });
@@ -361,7 +361,7 @@ class App extends React.Component {
                   </div>
                 </div>
                 <div className="mediaWrapper">
-                  <div className="imageCarousel">
+                  <div className="imageCarousel" >
                     <div>
                       <img src={this.state.thumbArray[this.state.selectedIdx]}></img>
                     </div>

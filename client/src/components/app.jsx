@@ -160,10 +160,6 @@ class App extends React.Component {
     result.style.backgroundImage = '';
     result.style.backgroundSize = '';
     result.style.display = 'flex';
-    
-    var imgStyle = document.getElementsByClassName('imageCarousel')
-    imgStyle.style.display = 'flex';
-    imgStyle.style.backgroundPosition = 0;
     this.setState({
       onHover: false,
     });
@@ -403,7 +399,7 @@ class App extends React.Component {
                         <button className="quantity-btn icon icon-collapse" onClick={this.decreaseQuantity} disabled={decrementDisabled}>
                           <span className="sr-only">Decrement quantity</span>
                         </button>
-                        <input value={this.state.quantity}></input>
+                        <input value={this.state.quantity} onChange={()=>{}}></input>
                         <button className="quantity-btn icon icon-expand" onClick={this.increaseQuantity}>
                           <span className="sr-only">Increment quantity</span>
                         </button>

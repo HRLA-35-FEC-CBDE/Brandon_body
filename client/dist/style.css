@@ -127,9 +127,10 @@ ul.breadcrumb li a:hover {
 
 }
 
+
 .img-zoom-result {
   position: absolute;
-  display: none;
+  /* display: none; */
   flex-direction: row;
   justify-content: space-between;
   align-content: flex-start;
@@ -141,16 +142,19 @@ ul.breadcrumb li a:hover {
   z-index: 100;
   
 }
-/* .img-zoom {
+.img-zoom {
   display: flex;
   flex-direction: row;
-} */
+}
 
 
 .imageCarousel {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+.imageCarousel img {
+  display: flex;
 }
 
 /* /////// DOT Carousel ////// */
@@ -586,7 +590,6 @@ hr {
   .buybox-buttons button {
     white-space: nowrap;
   }
-
 }
 
 

@@ -110,7 +110,7 @@ ul.breadcrumb li a:hover {
   max-width: 75%;
   margin-right: auto;
   margin-left: auto;
-  /* object-fit:scale-down; */
+  /* object-fit:scale-5down; */
 }
 * {box-sizing: border-box;}
 
@@ -129,20 +129,22 @@ ul.breadcrumb li a:hover {
 
 .img-zoom-result {
   position: absolute;
-  display: flex;
+  display: none;
   flex-direction: row;
   justify-content: space-between;
+  align-content: flex-start;
   /* border: 1px solid #d4d4d4; */
   height: 490px;
   width:330px;
-  object-fit:scale-down;
-  overflow: hidden;
-  z-index:100;
+  /* object-fit:scale-down; */
+  /* overflow: hidden; */
+  z-index: 100;
+  
 }
-.img-zoom {
+/* .img-zoom {
   display: flex;
   flex-direction: row;
-}
+} */
 
 
 .imageCarousel {

@@ -22,7 +22,6 @@ class App extends React.Component {
       thumbArray: [],
       selectedIdx: 0,
       onHover: false,
-      quantity: 0,
     }
     this.updateDimensions = this.updateDimensions.bind(this);
     this.updateImage = this.updateImage.bind(this);
@@ -80,13 +79,19 @@ class App extends React.Component {
     window.addEventListener('resize', this.updateDimensions);
     this.getData();
     // Initiate zoom effect:
-    
+
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this.updateDimensions);
   }
+
   onImageHover() {
-      this.imageZoom("myimage", "myresult");
+    var result = document.getElementById('myresult');
+    result.style.display = 'block';
+    this.setState({
+      onHover: true,
+    });
+    this.imageZoom("myimage", "myresult");
   }
 
   imageZoom(imgID, resultID) {
@@ -147,14 +152,18 @@ class App extends React.Component {
   }
   removeZoom() {
     var list = document.getElementsByClassName("img-zoom-lens");
-    for(var i = list.length - 1; 0 <= i; i--)
-    if(list[i] && list[i].parentElement)
-    list[i].parentElement.removeChild(list[i]);
+    for (var i = list.length - 1; 0 <= i; i--)
+      if (list[i] && list[i].parentElement)
+        list[i].parentElement.removeChild(list[i]);
 
     var result = document.getElementById('myresult');
     result.style.backgroundImage = '';
-    result.style.backgroundSize = "";
-    
+    result.style.backgroundSize = '';
+    result.style.display = 'none';
+
+    this.setState({
+      onHover: false,
+    });
   }
 
 
@@ -189,7 +198,7 @@ class App extends React.Component {
                   </div>
                 </div>
                 <div className="column-infoWrapper-full-screen">
-                    <div id="myresult" className="img-zoom-result"></div>
+                  <div id="myresult" className="img-zoom-result"></div>
                   <div id="product-brand">{product.company}</div>
                   <div>
                     <h1 id="product-information-full-screen">{product.title}</h1>
@@ -249,7 +258,7 @@ class App extends React.Component {
                     <button className="quantity-btn icon icon-collapse" onClick={this.decreaseQuantity} disabled={decrementDisabled}>
                       <span className="sr-only">Decrement quantity</span>
                     </button>
-                    <input value={this.state.quantity} onChange={() => {}}></input>
+                    <input value={this.state.quantity} onChange={() => { }} ></input>
                     <button className="quantity-btn icon icon-expand" onClick={this.increaseQuantity}>
                       <span className="sr-only">Increment quantity</span>
                     </button>
@@ -276,7 +285,7 @@ class App extends React.Component {
                           <label className="h6">{"Ship to address"}</label>
                         </div>
                         <div className="radio pick-up-radio">
-                          <input type="radio" disabled="disabled" onChage={() => { }}></input>
+                          <input type="radio" disabled="disabled" onChange={() => { }}></input>
                           <label className="h6">
                             <div>Pick up in store - Free</div>
                             <div className="shipping-no-in-store">This item is not available for in-store pickup</div>
@@ -392,7 +401,7 @@ class App extends React.Component {
                         <button className="quantity-btn icon icon-collapse" onClick={this.decreaseQuantity} disabled={decrementDisabled}>
                           <span className="sr-only">Decrement quantity</span>
                         </button>
-                        <input value={this.state.quantity} onChange={() => {}} ></input>
+                        <input value={this.state.quantity}></input>
                         <button className="quantity-btn icon icon-expand" onClick={this.increaseQuantity}>
                           <span className="sr-only">Increment quantity</span>
                         </button>
@@ -415,11 +424,11 @@ class App extends React.Component {
                         <section className="product-shipping-options-container">
                           <form>
                             <div className="radio">
-                              <input type="radio" checked="checked" onChage={() => {var x; }} ></input>
+                              <input type="radio" checked="checked" onChange={() => { var x; }} ></input>
                               <label className="h6">{"Ship to address"}</label>
                             </div>
                             <div className="radio pick-up-radio">
-                              <input type="radio" disabled="disabled" onChage={() => { }}></input>
+                              <input type="radio" disabled="disabled" onChange={() => { }}></input>
                               <label className="h6">
                                 <div>Pick up in store - Free</div>
                                 <div className="shipping-no-in-store">This item is not available for in-store pickup</div>

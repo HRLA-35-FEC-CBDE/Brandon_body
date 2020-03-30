@@ -115,9 +115,7 @@ ul.breadcrumb li a:hover {
 * {box-sizing: border-box;}
 
 .img-zoom-container {
-  /* position: relative; */
-  display:flex;
-  flex-direction: row;
+  position: relative;
 } 
 
 .img-zoom-lens {
@@ -126,12 +124,11 @@ ul.breadcrumb li a:hover {
   /*set the size of the lens:*/
   width: 81.4743px;
   height: 117.604px;
-  object-fit:scale-down;
+
 }
 
 .img-zoom-result {
   position: absolute;
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;

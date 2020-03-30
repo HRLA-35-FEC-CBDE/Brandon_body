@@ -5,7 +5,6 @@ const controller = {
     get: (req, res) => {
       model.products.getProduct(req.params)
       .then(result => {
-        console.log("RESULT", result)
         res.status(200).send(result);
       })
       .catch(err => {

@@ -87,7 +87,7 @@ class App extends React.Component {
 
   onImageHover() {
     var result = document.getElementById('myresult');
-    result.style.display = 'block';
+    result.style.display = 'flex';
     this.setState({
       onHover: true,
     });
@@ -157,9 +157,14 @@ class App extends React.Component {
         list[i].parentElement.removeChild(list[i]);
 
     var result = document.getElementById('myresult');
+    // var result = document.getElementsByClassName("img-zoom-result")
+    // .img-zoom-result
     result.style.backgroundImage = '';
-    result.style.backgroundSize = '';
-    result.style.display = 'none';
+    result.style.backgroundSize = 0;
+    // result.style.display = 'none';
+    // var imageCarousel = document.getElementsByClassName('imageCarousel');
+    // imageCarousel.style.display = 'flex';
+
     this.setState({
       onHover: false,
     });
@@ -362,9 +367,7 @@ class App extends React.Component {
                 </div>
                 <div className="mediaWrapper">
                   <div className="imageCarousel" >
-                    <div>
-                      <img src={this.state.thumbArray[this.state.selectedIdx]}></img>
-                    </div>
+                    <img src={this.state.thumbArray[this.state.selectedIdx]}></img>
                     <Thumb updateImage={this.updateImage} images={this.state.thumbArray} selectedIdx={this.state.selectedIdx} />
                   </div>
                   <div className="image-info-wrapper">
@@ -399,7 +402,7 @@ class App extends React.Component {
                         <button className="quantity-btn icon icon-collapse" onClick={this.decreaseQuantity} disabled={decrementDisabled}>
                           <span className="sr-only">Decrement quantity</span>
                         </button>
-                        <input value={this.state.quantity} onChange={()=>{}}></input>
+                        <input value={this.state.quantity} onChange={() => { }}></input>
                         <button className="quantity-btn icon icon-expand" onClick={this.increaseQuantity}>
                           <span className="sr-only">Increment quantity</span>
                         </button>

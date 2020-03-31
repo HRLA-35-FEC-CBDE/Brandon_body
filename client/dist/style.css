@@ -127,6 +127,11 @@ ul.breadcrumb li a:hover {
 
 }
 
+#myimage {
+  display: flex;
+  align-self: center;
+  justify-self: center;
+}
 
 #myresult {
   position: absolute;

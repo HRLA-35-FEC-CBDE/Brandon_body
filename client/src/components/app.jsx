@@ -152,27 +152,17 @@ class App extends React.Component {
   }
   removeZoom() {
     var list = document.getElementsByClassName("img-zoom-lens");
-    for (var i = list.length - 1; 0 <= i; i--)
-      if (list[i] && list[i].parentElement)
+    for (var i = list.length - 1; 0 <= i; i--) {
+      if (list[i] && list[i].parentElement) {
         list[i].parentElement.removeChild(list[i]);
-    var x = document.getElementById('myresult');
-    console.dir(x)
-    
-
-    // document.getElementById('myresult').setAttribute("style", "display: none;")
-    // var result = document.getElementsByClassName("img-zoom-result")
-    // .img-zoom-result
-    // result.setAttribute("style", "display: none;");
-    // result.style.backgroundImage = '';
-    // result.style.backgroundSize = 0;
-    var result = document.getElementById('myresult')
-    result.style.display = 'none';
-
+      }
+    }
+    const result = document.getElementById('myresult');
+    result.setAttribute('style', "display: none;");
     this.setState({
       onHover: false,
     });
   }
-
 
   render() {
     const { decrementDisabled, width, product } = this.state;
@@ -204,7 +194,7 @@ class App extends React.Component {
                     <ThumbImage updateImage={this.updateImage} images={this.state.thumbArray} selectedIdx={this.state.selectedIdx} />
                   </div>
                 </div>
-                <div className="column-infoWrapper-full-screen">
+                <div id="resultwrapper" className="column-infoWrapper-full-screen">
                   <div id="myresult" className="img-zoom-result"></div>
                   <div id="product-brand">{product.company}</div>
                   <div>
@@ -369,8 +359,8 @@ class App extends React.Component {
                   </div>
                 </div>
                 <div className="mediaWrapper">
+                  <img id="myimage" src={this.state.thumbArray[this.state.selectedIdx]}></img>
                   <div className="imageCarousel" >
-                    <img id='stackedImage' src={this.state.thumbArray[this.state.selectedIdx]}></img>
                     <Thumb updateImage={this.updateImage} images={this.state.thumbArray} selectedIdx={this.state.selectedIdx} />
                   </div>
                   <div className="image-info-wrapper">

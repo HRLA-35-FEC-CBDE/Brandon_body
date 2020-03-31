@@ -155,15 +155,18 @@ class App extends React.Component {
     for (var i = list.length - 1; 0 <= i; i--)
       if (list[i] && list[i].parentElement)
         list[i].parentElement.removeChild(list[i]);
+    var x = document.getElementById('myresult');
+    console.dir(x)
+    
 
-    var result = document.getElementById('myresult');
+    // document.getElementById('myresult').setAttribute("style", "display: none;")
     // var result = document.getElementsByClassName("img-zoom-result")
     // .img-zoom-result
-    result.style.backgroundImage = '';
-    result.style.backgroundSize = 0;
-    // result.style.display = 'none';
-    // var imageCarousel = document.getElementsByClassName('imageCarousel');
-    // imageCarousel.style.display = 'flex';
+    // result.setAttribute("style", "display: none;");
+    // result.style.backgroundImage = '';
+    // result.style.backgroundSize = 0;
+    var result = document.getElementById('myresult')
+    result.style.display = 'none';
 
     this.setState({
       onHover: false,
@@ -246,13 +249,13 @@ class App extends React.Component {
                   <label className="size">{'Size'}</label>
                   <ul className="size-selection" >
                     <li>
-                      <button className="size-title">Small</button>
+                      <button className="size-title-full-screen">Small</button>
                     </li>
                     <li>
-                      <button className="size-title">Medium</button>
+                      <button className="size-title-full-screen">Medium</button>
                     </li>
                     <li>
-                      <button className="size-title">Large</button>
+                      <button className="size-title-full-screen">Large</button>
                     </li>
                   </ul>
                   <label className="product-quantity-select">
@@ -367,7 +370,7 @@ class App extends React.Component {
                 </div>
                 <div className="mediaWrapper">
                   <div className="imageCarousel" >
-                    <img src={this.state.thumbArray[this.state.selectedIdx]}></img>
+                    <img id='stackedImage' src={this.state.thumbArray[this.state.selectedIdx]}></img>
                     <Thumb updateImage={this.updateImage} images={this.state.thumbArray} selectedIdx={this.state.selectedIdx} />
                   </div>
                   <div className="image-info-wrapper">

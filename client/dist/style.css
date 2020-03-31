@@ -255,6 +255,7 @@ label {
 .size-selection {
   display:flex;
   flex-direction: row;
+  width: auto;
   justify-content: space-between;
   height: 35px;
   padding-inline-start: 0px;
@@ -277,7 +278,8 @@ label {
   width: 100%;
   float: left;
   margin-right: 30px;
-  width: 250px;
+  padding: 0 60px;
+  /* width: auto; */
   line-height: 35px;
   white-space: nowrap;
   text-decoration: none;

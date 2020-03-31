@@ -2,7 +2,7 @@
 #page-content{
   padding: 0px 0px 30px 30px;
   max-width:1200px;
-  height:800px;
+  height:auto;
   margin-right: auto;
   margin-left: auto;
   padding-left: 30px;
@@ -130,7 +130,7 @@ ul.breadcrumb li a:hover {
 
 .img-zoom-result {
   position: absolute;
-  /* display: none; */
+  display: none;
   flex-direction: row;
   justify-content: space-between;
   align-content: flex-start;
@@ -152,6 +152,7 @@ ul.breadcrumb li a:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  align-content: center;
 }
 .imageCarousel img {
   display: flex;
@@ -603,9 +604,9 @@ hr {
   .infoWrapper{
     min-width: 100%;
   }
-  .mediaWrapper div {
+  /* .mediaWrapper div {
     display: flex;
-  }
+  } */
 }
 
 /* at specified point resize img element */
